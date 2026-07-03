@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>半导体科技股早报 2026年6月22日</title>
+<style>
+  :root {
+    --bg: #f0f4f8;
+    --card-bg: #ffffff;
+    --text: #1a1a2e;
+    --text-secondary: #555;
+    --accent: #1a56db;
+    --red: #dc2626;
+    --red-bg: #fee2e2;
+    --green: #059669;
+    --green-bg: #ecfdf5;
+    --border: #e5e7eb;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06);
+    --radius: 10px;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 40px 20px;
+  }
+  .container { max-width: 900px; margin: 0 auto; }
+  .header {
+    background: linear-gradient(135deg, #1a56db 0%, #2563eb 100%);
+    color: white;
+    padding: 36px 40px;
+    border-radius: 14px;
+    margin-bottom: 28px;
+  }
+  .header h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+  .header .meta { font-size: 14px; opacity: 0.9; line-height: 1.9; }
+  .compensation-banner {
+    background: rgba(255,200,0,0.18);
+    border: 1px solid rgba(255,200,0,0.5);
+    color: #ffe066;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    margin-top: 10px;
+    display: inline-block;
+  }
+  .card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 28px 32px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border);
+  }
+  .card h2 {
+    font-size: 20px;
+    color: var(--accent);
+    border-bottom: 2px solid #2563eb;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+  .stock-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+  }
+  .stock-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    transition: box-shadow 0.2s;
+  }
+  .stock-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+  .stock-card .stock-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+  }
+  .stock-card .stock-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .stock-card .stock-code {
+    font-size: 12px;
+    color: #9ca3af;
+  }
+  .stock-card .price {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--text);
+    margin: 8px 0;
+  }
+  .stock-card .change {
+    font-size: 16px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 4px;
+    display: inline-block;
+  }
+  .change-up { color: var(--red); }
+  .change-down { color: var(--green); }
+  .change-up-bg { background: var(--red-bg); color: var(--red); }
+  .change-down-bg { background: var(--green-bg); color: var(--green); }
+  .stock-card .info-line {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin: 4px 0;
+  }
+  .stock-card .info-line strong { color: var(--text); }
+  .stock-card .analysis {
+    font-size: 12px;
+    color: #6b7280;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #f3f4f6;
+    line-height: 1.6;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 8px;
+  }
+  th {
+    background: #2563eb;
+    color: white;
+    padding: 10px 16px;
+    text-align: left;
+    font-weight: 600;
+  }
+  td {
+    padding: 10px 16px;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  tr:nth-child(even) td { background: #f8fafc; }
+  td a { color: #2563eb; text-decoration: none; }
+  td a:hover { text-decoration: underline; }
+  .risk-item {
+    padding: 12px 0;
+    border-bottom: 1px solid #f3f4f6;
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+  }
+  .risk-item:last-child { border-bottom: none; }
+  .risk-item strong { color: #dc2626; }
+  .footer {
+    text-align: center;
+    font-size: 12px;
+    color: #9ca3af;
+    padding-top: 12px;
+  }
+  .source-link { color: #2563eb; text-decoration: none; }
+  .source-link:hover { text-decoration: underline; }
+  .tag-hot { background: #fef2f2; color: #dc2626; display: inline-block; font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 4px; margin-right: 6px; }
+  .tag-new { background: #dbeafe; color: #2563eb; display: inline-block; font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 4px; margin-right: 6px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>半导体科技股早报 2026年6月22日（周一）</h1>
+    <div class="meta">
+      生成时间：2026-06-22 01:00 GMT+8 ｜ 前一个交易日：2026-06-20（周五）<br>
+      覆盖股票：NVDA / AMD / TSM / MRVL / MU / SOXL / DELL / IREN / NBIS / 005930.KS / 000660.KS<br>
+      📊 数据说明：6月19日（周四）美股因 Juneteenth 休市，6月20日（周五）为本周最后一个交易日。本文数据来自 TradingEconomics、TradingKey、StockAnalysis、Barchart 等。
+    </div>
+  </div>
+
+  <!-- 一、板块综述 -->
+  <div class="card">
+    <h2>一、板块综述</h2>
+
+    <div class="news-item" style="padding:0;border:none;">
+      <h3 style="font-size:18px;color:var(--text);margin-bottom:12px;">AI半导体板块6月20日全线走强，MRVL +7.27% 领涨，MU +8.70% 创新高</h3>
+      <p>6月20日（周五），因 Juneteenth 假期后复工首日，AI 半导体板块全面爆发。TradingKey 数据显示，费城半导体指数（SOX）成分股中 <strong>Technology Equipment</strong> 板块整体上涨 <strong>5.07%</strong>。成交量前三：<strong style="color:#dc2626;">MRVL +7.27%</strong>、<strong style="color:#dc2626;">MU +8.70%</strong>、<strong style="color:#dc2626;">NVDA +2.95%</strong>。</p>
+      <p style="margin-top:12px;"><strong>核心驱动因素：</strong></p>
+      <ul style="padding-left:20px;margin-top:6px;">
+        <li style="margin:6px 0;"><strong>S&P 500 / Nasdaq-100 指数再平衡</strong>：MRVL 6月22日（今日）正式纳入标普500，NBIS 和 CoreWeave 同期纳入纳斯达克100，被动指数基金大规模建仓形成显著买盘支撑。</li>
+        <li style="margin:6px 0;"><strong>亚马逊 Trainium 外销催化</strong>：AWS 计划对外销售自研 AI 芯片，直接利好 Marvell（联合设计方）和 TSM（代工方）。</li>
+        <li style="margin:6px 0;"><strong>HBM 需求持续井喷</strong>：三星和 SK 海力士 HBM3E/HBM4 订单已排至 2027 年，MU 受益于美国本土 HBM 产能扩张逻辑。</li>
+        <li style="margin:6px 0;"><strong>AI 投资上游扩散延续</strong>：9家百亿美元市值半导体设备公司年内涨幅均超75%，资金从应用层向硬件基础设施层持续迁移。</li>
+        <li style="margin:6px 0;"><strong>京东/现代汽车等非传统巨头加注 AI</strong>：京东 AI 技术海外开放、现代汽车加仓波士顿动力，AI 产业信心面持续升温。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 二、核心股票行情 -->
+  <div class="card">
+    <h2>二、核心股票行情（11只）</h2>
+
+    <div class="stock-grid">
+
+      <!-- NVDA -->
+      <div class="stock-card">
+        <div class="stock-header">
+          <div>
+            <div class="stock-name">NVIDIA 英伟达</div>
+            <div class="stock-code">NASDAQ: NVDA</div>
+          </div>
+          <span class="tag-hot">🔴 核心</span>
+        </div>
+        <div class="price">$210.69</div>
+        <span class="change change-up">▲ +2.95%</span>
+        <div class="info-line">市值：≈ $5.1T</div>
+        <div class="info-line">52周区间：$142.03 - $236.54</div>
+        <div class="analysis"><strong>技术面：</strong>6/18收盘210.69，6/20上涨2.95%。52周高点236.54已回落10.9%，短期在200-215区间震荡整固。MACD中性偏多。<br><strong>建议：</strong>AI算力绝对龙头，中长期持有逻辑不变，短期波动中逢低关注。</div>
+      </div>
+
+      <!-- AMD -->
+      <div class="stock-card">
+        <div class="stock-header">
+          <div>
+            <div class="stock-name">AMD 超微半导体</div>
+            <div class="stock-code">NASDAQ: AMD</div>
+          </div>
+        </div>
+        <div class="price">$537.37</div>
+        <span class="change change-up">▲ +4.86% (6/18)</span>
+        <div class="info-line">市值：≈ $870B</div>
+        <div class="info-line">年内涨幅：+319%</div>
+        <div class="analysis"><strong>技术面：</strong>6/18收537.37（+4.86%），全年涨319%。数据中心GPU MI400预期强劲，但需注意高位获利回吐风险。<br><strong>建议：</strong>GPU双雄之一，但估值已偏高，注意仓位管理。</div>
+      </div>
+
+      <!-- TSM -->
+      <div class="stock-card">
+        <div class="stock-header">
+          <div>
+            <div class="stock-name">台积电 TSMC</div>
+            <div class="stock-code">NYSE: TSM</div>
+          </div>
+          <span class="tag-hot">🔴 核心</span>
+        </div>
+        <div class="price">$463.05</div>
+        <span class="change change-up">▲ 当日上涨</span>
+        <div class="info-line">市值：≈ $1.2T</div>
+        <div class="info-line">分析师目标价中值：$480.50</div>
+        <div class="analysis"><strong>技术面：</strong>6/20收约463，CoWoS先进封装售罄至年底，A14制程已吸引Marvell等客户洽谈。640亿美元年度资本开支。<br><strong>建议：</strong>全球AI芯片代工垄断地位无可替代，强买入评级一致。</div>
+      </div>
+
+      <!-- MRVL -->
+      <div class="stock-card">
+        <div class="stock-header">
+          <div>
+            <div class="stock-name">Marvell 迈威尔</div>
+            <div class="stock-code">NASDAQ: MRVL</div>
+          </div>
+          <span class="tag-hot">🔥 S&P500</span>
+        </div>
+        <div class="price">$310.58</div>
+        <span class="change change-up">▲ +7.27%</span>
+        <div class="info-line">市值：$268.96B</div>
+        <div class="info-line">PE：129.32x</div>
+        <div class="analysis"><strong>技术面：</strong>6/20暴涨7.27%收310.58，今日（6/22）正式纳入标普500。RSI 64.6中性偏多，MACD买入信号。但PE 129x估值极度拉伸。<br><strong>建议：</strong>S&P500纳入后短期仍有被动资金支撑，但注意纳入后"买预期卖事实"回调风险。</div>
+      </div>
+
+      <!-- MU -->
+      <div class="stock-card">
+        <div class="stock-header">
+          <div>
+            <div class="stock-name">Micron 美光科技</div>
+            <div class="stock-code">NASDAQ: MU</div>
+          </div>
+        </div>
+        <div class="price">$1,133.99</div>
+        <span class="change change-up">▲ +8.70% (6/20)</span>
+        <div class="info-line">市值：≈ $1.25T</div>
+        <div class="info-line">历史最高：$1,134（6/18）</div>
+        <div class="analysis"><strong>技术面：</strong>6/20单日暴涨8.70%，冲击历史新高。HBM3E供应英伟达Blackwell平台，2026年HBM产能已售罄。<br><strong>建议：</strong>存储芯片周期+AI需求双重驱动，但短期涨幅过大，可等待回调介入。</div>
+      </div>
+
+      <!-- SOXL -->
+      <div class="stock-card">
+        <div class="stock-header">
+          <div>
+            <div class="stock-name">半导体3倍做多ETF</div>
+            <div class="stock-code">NYSE: SOXL</div>
+          </div>
+          <span class="change change-up" style="background:#fef2f2;padding:2px 6px;border-radius:4px;font-size:11px;">⚠️ 3x杠杆</span>
+        </div>
+        <div class="price">$279.29</div>
+        <span class="change change-up">▲ +19.43% (6/18)</span>
+        <div class="info-line">前收盘：$233.86</div>
+        <div class="info-line">52周区间：N/A - $286.15</div>
+        <div class="analysis"><strong>技术面：</strong>6/18暴涨19.43%至279.29，逼近52周高286.15。方向性做多半导体但3倍杠杆放大了波动与时间损耗。<br><strong>建议：</strong>仅适合短期趋势交易者，严格止损。长期持有者注意杠杆ETF的衰减效应。</div>
+      </div>
+
+      <!-- DELL -->
+      <div class="stock-card">
+        <div class="stock-header">
+          <div>
+            <div class="stock-name">Dell 戴尔科技</div>
+            <div class="stock-code">NYSE: DELL</div>
+          </div>
+        </div>
+        <div class="price">$410.00</div>
+        <span class="change change-up">▲ 板块联动上涨</span>
+        <div class="info-line">市值：$264.76B</div>
+        <div class="info-line">成交量：15.3M</div>
+        <div class="analysis"><strong>技术面：</strong>AI服务器出货量持续增长（含Blackwell架构），IREN 16亿美元采购大单直接利好。戴尔AI服务器利润率高于传统PC业务。<br><strong>建议：</strong>AI算力基础设施受益标的，估值合理（相比纯芯片股），中长期配置价值突出。</div>
+      </div>
+
+      <!-- IREN -->
+      <div class="stock-card">
+        <div class="stock-header">
+          <div>
+            <div class="stock-name">IREN 算力公司</div>
+            <div class="stock-code">NASDAQ: IREN</div>
+          </div>
+        </div>
+        <div class="price">$59.96</div>
+        <span class="change change-up">▲ 板块联动</span>
+        <div class="info-line">历史最高：$76.41</div>
+        <div class="info-line">距高点：-21.5%</div>
+        <div class="analysis"><strong>技术面：</strong>6/18收59.96，距ATH 76.41回落约21.5%。16亿美元Blackwell采购计划（2027投产）锁定ARR从37亿增至44亿。<br><strong>建议：</strong>AI算力租赁赛道Beta股，波动大但长期逻辑清晰，适合高风险偏好投资者。</div>
+      </div>
+
+      <!-- NBIS -->
+      <div class="stock-card">
+        <div class="stock-header">
+          <div>
+            <div class="stock-name">Nebius Group</div>
+            <div class="stock-code">NASDAQ: NBIS</div>
+          </div>
+          <span class="tag-new">🆕 NDX</span>
+        </div>
+        <div class="price">$286.69</div>
+        <span class="change change-up">▲ +2.06% (6/18)</span>
+        <div class="info-line">市值：$73.41B</div>
+        <div class="info-line">30日涨幅：+29.86%</div>
+        <div class="analysis"><strong>技术面：</strong>今日（6/22）纳入纳斯达克100指数，30日暴涨近30%已部分提前定价。52周区间$43.89-298.80，紧贴高点。<br><strong>建议：</strong>欧洲AI基础设施龙头，指数纳入后短期或有"买预期卖事实"压力，中长期看好。</div>
+      </div>
+
+      <!-- 005930.KS 三星 -->
+      <div class="stock-card">
+        <div class="stock-header">
+          <div>
+            <div class="stock-name">三星电子</div>
+            <div class="stock-code">KRX: 005930.KS</div>
+          </div>
+        </div>
+        <div class="price">₩354,000</div>
+        <span class="change change-down">▼ -2.34% (6/19)</span>
+        <div class="info-line">市值：₩2,247.71T</div>
+        <div class="info-line">PE：28.41x</div>
+        <div class="analysis"><strong>技术面：</strong>6/19收354,000韩元（-2.34%），但据报道曾触及299,500历史新高。Q1营业利润同比增756%至57万亿韩元，AI存储芯片需求强劲。<br><strong>建议：</strong>韩股流动性风险需注意，但HBM全球份额第一，罢工虽被政府干预但仍存不确定性。</div>
+      </div>
+
+      <!-- 000660.KS SK海力士 -->
+      <div class="stock-card">
+        <div class="stock-header">
+          <div>
+            <div class="stock-name">SK海力士</div>
+            <div class="stock-code">KRX: 000660.KS</div>
+          </div>
+          <span class="tag-hot">🔴 HBM</span>
+        </div>
+        <div class="price">₩2,764,000</div>
+        <span class="change change-up">▲ +2.94% (6/20)</span>
+        <div class="info-line">市值：≈ $587.63B</div>
+        <div class="info-line">年内涨幅：约+275%</div>
+        <div class="analysis"><strong>技术面：</strong>6/20收2,764,000韩元（+2.94%），盘中区间2,688,000-2,891,000。HBM4提前量产，英伟达唯一HBM3E供应商地位稳固。<br><strong>建议：</strong>AI存储绝对龙头，HBM市占率领先三星。注意韩元汇率风险和地缘政治不确定性。</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 三、板块风险提示 -->
+  <div class="card">
+    <h2>三、板块风险提示</h2>
+
+    <div class="risk-item">
+      <strong>⚠️ 风险一：SOXL 3倍杠杆ETF的时间衰减与波动风险</strong><br>
+      6月18日单日暴涨19.43%表明半导体板块当前处于极高波动状态。SOXL 作为3倍杠杆ETF，在市场震荡期间会出现显著的<strong>时间衰减（volatility decay）</strong>和路径依赖效应。若板块出现5%以上回调，SOXL跌幅将达15%+。仅适合短期趋势交易，<strong>严禁</strong>作为长期持有标的。
+    </div>
+
+    <div class="risk-item">
+      <strong>⚠️ 风险二：MRVL S&P500纳入后的"买预期卖事实"回调风险</strong><br>
+      MRVL 当前 PE 高达 <strong>129.32x</strong>，远超行业平均（<25x），估值已极度拉伸。S&P500纳入（6/22生效）前的被动建仓资金已基本完成，纳入生效后可能出现短期获利了结。此外，即将离任CFO的大规模减持（约$60.1M，占持股48%）增加了短期抛压风险。
+    </div>
+
+    <div class="risk-item">
+      <strong>⚠️ 风险三：NBIS / CoreWeave 纳斯达克100纳入后的估值消化</strong><br>
+      NBIS 近30日涨幅达29.86%，已部分定价NDX纳入效应。正式纳入后，若市场情绪逆转，可能出现与MRVL类似的"买预期卖事实"回调。PE 99x 表明市场已计入极高的增长预期。
+    </div>
+
+    <div class="risk-item">
+      <strong>⚠️ 风险四：韩国半导体股的流动性与地缘政治风险</strong><br>
+      三星（005930.KS）和SK海力士（000660.KS）以韩元计价，中国投资者需同时承担<strong>汇率波动风险</strong>和<strong>韩国市场监管风险</strong>。三星电子罢工事件虽经政府介入暂时平息，但劳工关系仍存隐患。韩股流动性远低于美股，大额资金进出可能引发显著价格冲击。
+    </div>
+
+    <div class="risk-item">
+      <strong>⚠️ 风险五：全球AI芯片估值整体高位，Yann LeCun + 摩根大通持续预警</strong><br>
+      AI泰斗LeCun和摩根大通已多次警告AI芯片股估值过热，交易过度拥挤存在集中减仓踩踏风险。ASML EUV出口管制争议（美方称设备可能已流入中国、ASML否认）随时可能触发新一轮制裁升级。
+    </div>
+
+    <div class="risk-item">
+      <strong>⚠️ 风险六：Lina Khan FTC主席任期将至，反垄断执法不确定性</strong><br>
+      据报道，FTC主席Lina Khan任期将满，其继任者对科技巨头的反垄断立场将直接影响AI芯片行业的并购与竞争格局。若执法放松，可能加速行业整合（利好龙头）；若延续激进执法，可能抑制估值扩张。
+    </div>
+  </div>
+
+  <!-- 四、今日重点关注 -->
+  <div class="card">
+    <h2>四、今日重点关注（明日催化剂预告）</h2>
+
+    <div class="risk-item" style="border-bottom:1px solid #f3f4f6;">
+      <strong>1. MRVL 正式纳入 S&P 500 指数（6月22日开盘前生效）</strong><br>
+      被动指数基金约 <strong>$50-80B</strong> 资金已完成或即将完成建仓。关注开盘后是否出现"买预期卖事实"回调。<strong>催化剂等级：⭐⭐⭐⭐⭐</strong>
+    </div>
+
+    <div class="risk-item" style="border-bottom:1px solid #f3f4f6;">
+      <strong>2. NBIS + CoreWeave 正式纳入纳斯达克100指数（6月22日生效）</strong><br>
+      NDX纳入将触发约 <strong>$10-15B</strong> 被动资金流入两支AI基础设施股，但30日涨幅已部分提前消化。<strong>催化剂等级：⭐⭐⭐⭐</strong>
+    </div>
+
+    <div class="risk-item" style="border-bottom:1px solid #f3f4f6;">
+      <strong>3. Marvell 总裁 A14 制程导入后续谈判进展</strong><br>
+      台积电A14（1.4nm）导入将使Marvell定制芯片性能实现代际跃升，与Broadcom在ASIC领域的竞争格局将被重新定义。关注本周是否会有进一步技术细节披露。<strong>催化剂等级：⭐⭐⭐⭐</strong>
+    </div>
+
+    <div class="risk-item">
+      <strong>4. 本周重点关注：6月23日 OneXPlayer 夏季新品发布会（AMD/Intel PC芯片生态）+ 韩国AI存储芯片出货数据更新</strong><br>
+      搭载AMD/Intel新品的AI PC设备发布将直接影响端侧AI芯片市场预期。韩国海关6月前20天半导体出口数据可能本周公布，将成为HBM需求的风向标。<strong>催化剂等级：⭐⭐⭐</strong>
+    </div>
+  </div>
+
+  <!-- 五、信息来源 -->
+  <div class="card">
+    <h2>五、信息来源</h2>
+    <table>
+      <thead>
+        <tr><th>来源</th><th>链接</th><th>数据覆盖</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>TradingEconomics</td><td><a class="source-link" href="https://zh.tradingeconomics.com" target="_blank">tradingeconomics.com</a></td><td>NVDA/AMD/MRVL实时+历史价格</td></tr>
+        <tr><td>TradingKey</td><td><a class="source-link" href="https://www.tradingkey.com" target="_blank">tradingkey.com</a></td><td>MRVL/MU/NVDA 6/20涨跌幅</td></tr>
+        <tr><td>StockAnalysis</td><td><a class="source-link" href="https://stockanalysis.com" target="_blank">stockanalysis.com</a></td><td>NBIS/005930.KS/000660.KS</td></tr>
+        <tr><td>Barchart</td><td><a class="source-link" href="https://www.barchart.com" target="_blank">barchart.com</a></td><td>NVDA 历史数据</td></tr>
+        <tr><td>NVIDIA Investor</td><td><a class="source-link" href="https://investor.nvidia.com" target="_blank">investor.nvidia.com</a></td><td>NVDA 官方报价</td></tr>
+        <tr><td>Investing.com</td><td><a class="source-link" href="https://www.investing.com" target="_blank">investing.com</a></td><td>SOXL/000660.KS 实时价格</td></tr>
+        <tr><td>MarketBeat</td><td><a class="source-link" href="https://www.marketbeat.com" target="_blank">marketbeat.com</a></td><td>DELL 最新报价</td></tr>
+        <tr><td>Macrotrends</td><td><a class="source-link" href="https://www.macrotrends.net" target="_blank">macrotrends.net</a></td><td>IREN 历史价格</td></tr>
+        <tr><td>VCPScanner</td><td><a class="source-link" href="https://vcpscanner.com" target="_blank">vcpscanner.com</a></td><td>AMD 6/20 收盘价</td></tr>
+        <tr><td>格隆汇</td><td><a class="source-link" href="https://www.gelonghui.com" target="_blank">gelonghui.com</a></td><td>三星电子最新动态</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="footer">本报告由 WorkBuddy AI 自动生成 ｜ 生成时间：2026-06-22 01:00 GMT+8 ｜ 数据来源：TradingEconomics / TradingKey / StockAnalysis / Barchart 等 ｜ 投资有风险，本报告不构成投资建议</div>
+</div>
+</body>
+</html>

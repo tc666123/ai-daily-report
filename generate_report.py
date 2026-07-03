@@ -526,25 +526,37 @@ def generate_ai_html(content, beijing_dt):
 
     sections_html = []
     for ch in content.get("chapters", []):
+        if isinstance(ch, str):
+            sections_html.append(build_section(ch, []))
+            continue
         items_html = []
         for item in ch.get("items", []):
-            items_html.append(build_news_item(
-                item.get("tag_class", "tag-gray"),
-                item.get("tag", "今日"),
-                item.get("title", ""),
-                item.get("body", ""),
-                item.get("source", "综合分析"),
-            ))
-        sections_html.append(build_section(ch.get("title", ""), items_html))
+            if isinstance(item, str):
+                items_html.append(build_news_item("tag-gray", "今日", item))
+            elif isinstance(item, dict):
+                items_html.append(build_news_item(
+                    item.get("tag_class", "tag-gray"),
+                    item.get("tag", "今日"),
+                    item.get("title", ""),
+                    item.get("body", ""),
+                    item.get("source", "综合分析"),
+                ))
+        ch_title = ch.get("title", "") if isinstance(ch, dict) else str(ch)
+        sections_html.append(build_section(ch_title, items_html))
 
     # 摘要
     if content.get("summary"):
-        summary_items = [build_summary_item(i+1, s) for i, s in enumerate(content["summary"])]
+        summary_items = [build_summary_item(i+1, s if isinstance(s, str) else str(s)) for i, s in enumerate(content["summary"])]
         sections_html.append(build_section("今日摘要", summary_items))
 
     # 来源
     if content.get("sources"):
-        source_items = [build_source_link(s.get("url", ""), s.get("text", "")) for s in content["sources"]]
+        source_items = []
+        for s in content["sources"]:
+            if isinstance(s, dict):
+                source_items.append(build_source_link(s.get("url", ""), s.get("text", "")))
+            elif isinstance(s, str):
+                source_items.append(build_source_link(s, s))
         sections_html.append(build_section("信息来源", source_items))
 
     return AI_TEMPLATE.format(
@@ -564,7 +576,10 @@ def generate_stock_html(content, stocks_data, beijing_dt):
 
     # 个股卡片（放在最前面）
     stock_cards_html = []
-    stock_details = {s["symbol"]: s for s in content.get("stock_cards", [])}
+    stock_details = {}
+    for s in content.get("stock_cards", []):
+        if isinstance(s, dict) and "symbol" in s:
+            stock_details[s["symbol"]] = s
     for sd in stocks_data:
         detail = stock_details.get(sd["symbol"], {}).get("detail", f"收盘价{sd['price']}")
         stock_cards_html.append(build_stock_card(
@@ -575,25 +590,37 @@ def generate_stock_html(content, stocks_data, beijing_dt):
 
     # 其他章节
     for ch in content.get("chapters", []):
+        if isinstance(ch, str):
+            sections_html.append(build_section(ch, []))
+            continue
         items_html = []
         for item in ch.get("items", []):
-            items_html.append(build_news_item(
-                item.get("tag_class", "tag-gray"),
-                item.get("tag", "综述"),
-                item.get("title", ""),
-                item.get("body", ""),
-                item.get("source", "综合分析"),
-            ))
-        sections_html.append(build_section(ch.get("title", ""), items_html))
+            if isinstance(item, str):
+                items_html.append(build_news_item("tag-gray", "综述", item))
+            elif isinstance(item, dict):
+                items_html.append(build_news_item(
+                    item.get("tag_class", "tag-gray"),
+                    item.get("tag", "综述"),
+                    item.get("title", ""),
+                    item.get("body", ""),
+                    item.get("source", "综合分析"),
+                ))
+        ch_title = ch.get("title", "") if isinstance(ch, dict) else str(ch)
+        sections_html.append(build_section(ch_title, items_html))
 
     # 摘要
     if content.get("summary"):
-        summary_items = [build_summary_item(i+1, s) for i, s in enumerate(content["summary"])]
+        summary_items = [build_summary_item(i+1, s if isinstance(s, str) else str(s)) for i, s in enumerate(content["summary"])]
         sections_html.append(build_section("关注要点", summary_items))
 
     # 来源
     if content.get("sources"):
-        source_items = [build_source_link(s.get("url", ""), s.get("text", "")) for s in content["sources"]]
+        source_items = []
+        for s in content["sources"]:
+            if isinstance(s, dict):
+                source_items.append(build_source_link(s.get("url", ""), s.get("text", "")))
+            elif isinstance(s, str):
+                source_items.append(build_source_link(s, s))
         sections_html.append(build_section("信息来源", source_items))
 
     return STOCK_TEMPLATE.format(

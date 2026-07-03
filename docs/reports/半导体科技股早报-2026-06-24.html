@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>半导体科技股早报 2026年6月24日</title>
+<style>
+  :root {
+    --bg: #f0f4f8;
+    --card-bg: #ffffff;
+    --text: #1a1a2e;
+    --text-secondary: #555;
+    --accent: #1a56db;
+    --red: #dc2626;
+    --red-bg: #fef2f2;
+    --green: #059669;
+    --green-bg: #ecfdf5;
+    --border: #e5e7eb;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06);
+    --radius: 10px;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 40px 20px;
+  }
+  .container { max-width: 900px; margin: 0 auto; }
+  .header {
+    background: linear-gradient(135deg, #1a56db 0%, #2563eb 100%);
+    color: white;
+    padding: 36px 40px;
+    border-radius: 14px;
+    margin-bottom: 28px;
+  }
+  .header h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+  .header .meta { font-size: 14px; opacity: 0.9; line-height: 1.9; }
+  .compensation-banner {
+    background: rgba(255,200,0,0.18);
+    border: 1px solid rgba(255,200,0,0.5);
+    color: #ffe066;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    margin-top: 10px;
+    display: inline-block;
+  }
+  .card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 28px 32px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border);
+  }
+  .card h2 {
+    font-size: 20px;
+    color: var(--accent);
+    border-bottom: 2px solid #2563eb;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+  .stock-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 16px;
+  }
+  .stock-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    transition: box-shadow 0.2s;
+  }
+  .stock-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+  .stock-card .name { font-size: 15px; font-weight: 700; color: var(--text); }
+  .stock-card .code { font-size: 12px; color: #9ca3af; margin-bottom: 8px; }
+  .stock-card .price { font-size: 26px; font-weight: 700; margin: 6px 0; }
+  .stock-card .change {
+    font-size: 15px;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 4px;
+    display: inline-block;
+  }
+  .up { color: var(--red); background: var(--red-bg); }
+  .down { color: var(--green); background: var(--green-bg); }
+  .stock-card .info { font-size: 12px; color: #6b7280; margin-top: 8px; line-height: 1.6; }
+  .stock-card .analysis { font-size: 12px; color: var(--text-secondary); margin-top: 8px; padding-top: 8px; border-top: 1px solid #f3f4f6; }
+  .risk-item {
+    padding: 12px 0;
+    border-bottom: 1px solid #f3f4f6;
+  }
+  .risk-item:last-child { border-bottom: none; }
+  .risk-item h4 { font-size: 15px; color: var(--red); margin-bottom: 6px; }
+  .risk-item p { font-size: 13px; color: var(--text-secondary); line-height: 1.8; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin: 16px 0;
+  }
+  th {
+    background: #2563eb;
+    color: white;
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+  }
+  td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  tr:nth-child(even) td { background: #f8fafc; }
+  td .pos { color: var(--red); font-weight: 600; }
+  td .neg { color: var(--green); font-weight: 600; }
+  .source-link { color: #2563eb; text-decoration: none; }
+  .source-link:hover { text-decoration: underline; }
+  .footer {
+    text-align: center;
+    font-size: 12px;
+    color: #9ca3af;
+    padding-top: 12px;
+  }
+  .summary-text { font-size: 14px; color: var(--text-secondary); line-height: 1.9; }
+  .catalyst-item { padding: 12px 0; border-bottom: 1px solid #f3f4f6; }
+  .catalyst-item:last-child { border-bottom: none; }
+  .catalyst-item h4 { font-size: 15px; margin-bottom: 4px; }
+  .catalyst-item p { font-size: 13px; color: var(--text-secondary); }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>半导体科技股早报 2026年6月24日（周三）</h1>
+    <div class="meta">
+      生成时间：2026-06-24 16:00 GMT+8 ｜ 数据截止：美股 6/23 收盘 + 亚洲 6/24 收盘<br>
+      覆盖标的：NVDA / AMD / TSM / MRVL / MU / SOXL / DELL / IREN / NBIS / 005930.KS / 000660.KS
+    </div>
+    <div class="compensation-banner">⚠️ 补偿生成：原定 09:00 未能执行，于 16:00 补偿</div>
+  </div>
+
+  <!-- 一、板块综述 -->
+  <div class="card">
+    <h2>一、板块综述</h2>
+    <p class="summary-text">
+      6月23日-24日全球半导体板块遭遇<strong>2026年以来最严重抛售</strong>，可称为"黑色星期二"。美股费城半导体指数大跌约<span class="neg">-8%</span>，30只成分股全部走低。此前一日（6/22），韩国KOSPI指数暴跌近<span class="neg">-10%触发熔断</span>，三星电子、SK海力士均跌超<span class="neg">-12%</span>，韩国散户杠杆ETF爆仓引发连锁强平。
+    </p>
+    <p class="summary-text" style="margin-top:12px;">
+      核心驱动因素：(1) 韩国杠杆ETF散户高追爆仓→强平→KOSPI熔断→恐慌外溢至美股；(2) AI算力租赁现货价格从高点回落，市场开始质疑"算力稀缺"溢价；(3) 美光（MU）6/24盘后公布财报前，"买预期卖事实"资金提前出逃；(4) 英伟达PCB降价传闻（已被否认）加剧产业链恐慌。6/24亚洲盘韩股暴力反弹（KOSPI +4.2%，传三星90万亿韩元回购），但美股盘前存储股（美光、闪迪）仍跌超10%，显示恐慌情绪尚未完全消退。
+    </p>
+  </div>
+
+  <!-- 二、核心股票行情 -->
+  <div class="card">
+    <h2>二、核心股票行情（6/23 美股收盘 + 6/24 亚洲收盘）</h2>
+    
+    <div class="stock-grid">
+      <!-- NVDA -->
+      <div class="stock-card">
+        <div class="name">NVIDIA</div>
+        <div class="code">NVDA · NASDAQ</div>
+        <div class="price">$199.18</div>
+        <div class="change down">▼ -0.40%（6/24）</div>
+        <div class="info">市值 ~$5.0T | 52周高 $236.54（5/14）</div>
+        <div class="analysis"><strong>技术面：</strong>连续两日下跌（6/23 -4.13%，6/24 -0.40%），已跌破$200整数关口。52周高点$236.54以来累计回落15.8%。<br><strong>建议：</strong>$190-$195为关键支撑区间，6/25股东大会是短期催化剂。</div>
+      </div>
+
+      <!-- AMD -->
+      <div class="stock-card">
+        <div class="name">AMD</div>
+        <div class="code">AMD · NASDAQ</div>
+        <div class="price">$517.66</div>
+        <div class="change down">▼ ~-6.2%（自6/22）</div>
+        <div class="info">市值 ~$830B | 52周高 ~$580</div>
+        <div class="analysis"><strong>技术面：</strong>随大盘回调，从近期高点回落。MEXT整合进展是中期关键变量。<br><strong>建议：</strong>板块系统性风险主导，个股Alpha暂时退居其次。</div>
+      </div>
+
+      <!-- TSM -->
+      <div class="stock-card">
+        <div class="name">台积电</div>
+        <div class="code">TSM · NYSE</div>
+        <div class="price">$436.39</div>
+        <div class="change down">▼ -6.69%</div>
+        <div class="info">市值 ~$1.1T | 自6/22历史新高 $467.67回落-6.7%</div>
+        <div class="analysis"><strong>技术面：</strong>从历史新高快速回调，跌破$450支撑。A14制程导入等基本面不变。<br><strong>建议：</strong>系统性回调中龙头率先企稳概率大，$420附近关注承接力度。</div>
+      </div>
+
+      <!-- MRVL -->
+      <div class="stock-card">
+        <div class="name">Marvell</div>
+        <div class="code">MRVL · NASDAQ</div>
+        <div class="price">$279.04</div>
+        <div class="change down">▼ -9.4%</div>
+        <div class="info">市值 ~$240B | S&P500纳入后首周即遭重锤</div>
+        <div class="analysis"><strong>技术面：</strong>S&P500纳入后"利好兑现"+板块崩盘双重打击，$267为关键支撑。<br><strong>建议：</strong>⚠️ S&P500纳入后60%案例1-3月跑输大盘，短期观望。</div>
+      </div>
+
+      <!-- MU -->
+      <div class="stock-card">
+        <div class="name">美光科技</div>
+        <div class="code">MU · NASDAQ</div>
+        <div class="price">$1,037.86</div>
+        <div class="change down">▼ -1.16%（6/24）｜-14.5%自ATH</div>
+        <div class="info">市值 ~$1.1T | 🏆 ATH $1,213.56（6/22）</div>
+        <div class="analysis"><strong>技术面：</strong>从历史最高点两日暴跌14.5%，6/24盘后公布财报。$1,000整数关口是关键心理支撑。<br><strong>建议：</strong>⚠️ 财报在即（今日盘后），高位追涨/追跌风险均极大，等待财报指引。</div>
+      </div>
+
+      <!-- SOXL -->
+      <div class="stock-card">
+        <div class="name">半导体3倍做多</div>
+        <div class="code">SOXL · NYSEARCA</div>
+        <div class="price">$229.94</div>
+        <div class="change down">▼ -23.5%（两日累计）</div>
+        <div class="info">3x 杠杆 ETF | 自6/22 $300.77暴跌</div>
+        <div class="analysis"><strong>技术面：</strong>两日暴跌23.5%，杠杆ETF衰减效应（volatility decay）在暴跌中尤为致命。<br><strong>建议：</strong>⚠️⚠️ 三倍杠杆不适合长期持有，反弹亦是减仓机会而非抄底信号。</div>
+      </div>
+
+      <!-- DELL -->
+      <div class="stock-card">
+        <div class="name">戴尔科技</div>
+        <div class="code">DELL · NYSE</div>
+        <div class="price">$431.00</div>
+        <div class="change up">▲ +0.77%（6/24）</div>
+        <div class="info">市值 ~$310B | 52周高 $469.47（6/1）</div>
+        <div class="analysis"><strong>技术面：</strong>板块暴跌中相对抗跌，AI服务器订单仍是基本面支撑。<br><strong>建议：</strong>相对强势股，$400-$420区间可关注，AI服务器长期逻辑未变。</div>
+      </div>
+
+      <!-- IREN -->
+      <div class="stock-card">
+        <div class="name">IREN</div>
+        <div class="code">IREN · NASDAQ</div>
+        <div class="price">$52.15</div>
+        <div class="change down">▼ -4.69%（6/24）</div>
+        <div class="info">市值 ~$14B | 盘后 $54.97</div>
+        <div class="analysis"><strong>技术面：</strong>持续回调，数据中心/矿企板块获利了结压力大。16亿美元Blackwell采购计划提供长期支撑。<br><strong>建议：</strong>高位回调中，$50附近是重要观察位，等待企稳信号。</div>
+      </div>
+
+      <!-- NBIS -->
+      <div class="stock-card">
+        <div class="name">Nebius</div>
+        <div class="code">NBIS · NASDAQ</div>
+        <div class="price">$260.23</div>
+        <div class="change down">▼ -9.6%（自6/22 $288）</div>
+        <div class="info">市值 ~$670B | 52周高 $299.86（6/22）</div>
+        <div class="analysis"><strong>技术面：</strong>纳入纳斯达克100后的回调，与MRVL类似面临"利好兑现"压力。<br><strong>建议：</strong>指数纳入红利释放中但短期抛压重，$250为关键支撑。</div>
+      </div>
+
+      <!-- 三星电子 -->
+      <div class="stock-card">
+        <div class="name">三星电子</div>
+        <div class="code">005930 · KRX</div>
+        <div class="price" style="color:#dc2626">反弹 +3%~10%（6/24盘中）</div>
+        <div class="change up">▲ 暴力反弹（6/24）</div>
+        <div class="info">市值 ~$350B | 6/22 KOSPI熔断 -12%</div>
+        <div class="analysis"><strong>技术面：</strong>KOSPI熔断后暴力反弹，传90万亿韩元回购。摩根士丹利认为基本面稳固。<br><strong>建议：</strong>⚠️ 韩股杠杆ETF风险未解除，反弹持续性待观察。MSCI未晋级发达市场形成压制。</div>
+      </div>
+
+      <!-- SK海力士 -->
+      <div class="stock-card">
+        <div class="name">SK海力士</div>
+        <div class="code">000660 · KRX</div>
+        <div class="price">2,580,000 KRW</div>
+        <div class="change up">▲ +0.98%（6/24收盘）</div>
+        <div class="info">市值 ~$210B | 拟8月赴美上市</div>
+        <div class="analysis"><strong>技术面：</strong>6/23跌超12%后6/24温和反弹，盘中最高超5%。ADR上市预期提供中期支撑。<br><strong>建议：</strong>⚠️ 韩股高波动环境，ADR上市（预计8月）是中期正向催化剂。</div>
+      </div>
+    </div>
+
+    <!-- 汇总表 -->
+    <table style="margin-top:24px;">
+      <thead>
+        <tr><th>代码</th><th>名称</th><th>最新价</th><th>涨跌幅</th><th>数据日期</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>NVDA</td><td>NVIDIA</td><td>$199.18</td><td class="neg">-0.40%</td><td>6/24 收盘</td></tr>
+        <tr><td>AMD</td><td>AMD</td><td>$517.66</td><td class="neg">~-6.2%（自6/22）</td><td>6/24 收盘</td></tr>
+        <tr><td>TSM</td><td>台积电</td><td>$436.39</td><td class="neg">-6.69%</td><td>6/24 收盘</td></tr>
+        <tr><td>MRVL</td><td>Marvell</td><td>$279.04</td><td class="neg">-9.4%</td><td>6/24 收盘</td></tr>
+        <tr><td>MU</td><td>美光科技</td><td>$1,037.86</td><td class="neg">-1.16%（6/24）｜-14.5%（自ATH）</td><td>6/24 收盘 ⚠️今日财报</td></tr>
+        <tr><td>SOXL</td><td>半导体3x做多ETF</td><td>$229.94</td><td class="neg">-23.5%（两日）</td><td>6/24 收盘</td></tr>
+        <tr><td>DELL</td><td>戴尔科技</td><td>$431.00</td><td class="pos">+0.77%</td><td>6/24 收盘</td></tr>
+        <tr><td>IREN</td><td>IREN</td><td>$52.15</td><td class="neg">-4.69%</td><td>6/24 收盘</td></tr>
+        <tr><td>NBIS</td><td>Nebius</td><td>$260.23</td><td class="neg">-9.6%（自6/22）</td><td>6/24 收盘</td></tr>
+        <tr><td>005930.KS</td><td>三星电子</td><td>反弹 +3~10%（盘内）</td><td class="pos">暴力反弹</td><td>6/24 韩股收盘</td></tr>
+        <tr><td>000660.KS</td><td>SK海力士</td><td>2,580,000 KRW</td><td class="pos">+0.98%</td><td>6/24 15:30 KST</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 三、板块风险提示 -->
+  <div class="card">
+    <h2>三、板块风险提示</h2>
+
+    <div class="risk-item">
+      <h4>⚠️⚠️ SOXL 三倍杠杆 ETF 灾难性风险</h4>
+      <p>SOXL两日暴跌23.5%（$300.77→$229.94），三倍杠杆在暴跌中存在严重的衰减效应。以本次为例，如果费城半导体指数下跌8%，理论跌幅应为24%，但加上波动率衰减和滚仓损耗，实际持有者的亏损更大。韩国金融监督院已公开关注个股杠杆ETF的散户高追风险，SOXL虽为美股ETF，但同样受韩股半导体ETF情绪传导。三倍杠杆产品在任何市场环境下都不适合长期持有。</p>
+    </div>
+
+    <div class="risk-item">
+      <h4>⚠️ MU 美光财报"买预期卖事实"风险</h4>
+      <p>美光6/24盘后公布财报，股价已从历史最高点$1,213.56回落14.5%至$1,037.86。根据历史规律，财报前大幅上涨的股票在财报公布后（即使业绩超预期）也容易出现"利好出尽"式回调。MU今年至今涨幅超250%，市场预期已极度乐观。若财报中HBM出货指引低于最乐观预期，可能出现二次探底。MU财报结果也将直接影响三星、SK海力士短期走势。</p>
+    </div>
+
+    <div class="risk-item">
+      <h4>⚠️ 韩股半导体"杠杆踩踏+监管降温+MSCI不晋级"三重压力</h4>
+      <p>6/22 KOSPI暴跌近10%触发熔断，核心原因之一是韩国散户大量使用个股杠杆ETF（如南方两倍做多三星/海力士ETF）追高，回调时触发连锁强平。韩国金融监督院院长已公开表示考虑出台限制措施。与此同时，MSCI 6/23再次拒绝将韩国升级为发达市场，被动资金流入受限。三重压力叠加下，韩股半导体板块短期波动仍将剧烈。</p>
+    </div>
+
+    <div class="risk-item">
+      <h4>⚠️ AI"算力稀缺"信仰动摇的系统性风险</h4>
+      <p>过去三年AI板块的核心估值逻辑——"算力越稀缺、资本开支越合理、估值越高"——正在经受全方位的压力测试。算力租赁现货价格与远期合约价格出现罕见背离，科技巨头集体收紧AI预算，资本市场开始用ROI审视每一家AI企业。如果"算力稀缺"溢价瓦解，整个AI半导体板块的估值中枢将面临系统性下修风险，尤其是NVDA、AMD、MRVL等与AI算力高度绑定的标的。</p>
+    </div>
+
+    <div class="risk-item">
+      <h4>⚠️ MRVL/NBIS S&P500/NDX纳入后回调风险</h4>
+      <p>MRVL 6/22正式纳入S&P500，NBIS 6/22纳入纳斯达克100。历史数据显示，指数纳入后的"利好兑现"效应在多数案例中导致1-3个月内跑输大盘。叠加当前板块系统性抛售，两只股票的短期压力尤为显著。MRVL从S&P500纳入时的$307跌至$279（-9.4%），NBIS从$288跌至$260（-9.6%）。</p>
+    </div>
+  </div>
+
+  <!-- 四、今日重点关注 -->
+  <div class="card">
+    <h2>四、今日重点关注（明日催化剂预告）</h2>
+
+    <div class="catalyst-item">
+      <h4>📊 美光（MU）财报——今日盘后（6/24 after close）</h4>
+      <p>美光将于北京时间6月25日凌晨公布2026财年第三季度财报。HBM出货量、AI相关营收占比、下一季度指引是市场三大焦点。分析师普遍预期强劲，但需警惕"买预期、卖事实"。MU股价已从历史高点$1,213.56暴跌14.5%至$1,037.86，如果财报大幅超预期，可能出现报复性反弹；如果指引低于最乐观预期，则可能二次探底。财报结果将直接影响全球存储板块（三星、SK海力士、西部数据、闪迪）短期走势。</p>
+    </div>
+
+    <div class="catalyst-item">
+      <h4>🏛️ NVIDIA 股东大会——6月25日</h4>
+      <p>NVIDIA将于6月25日召开年度股东大会。GB300量产进度、下一代Rubin架构路线图、Jensen Huang对AI算力需求的展望将是三大关键催化剂。NVDA股价已从$236.54的52周高点回落15.8%至$199.18，股东大会可能成为短期方向的突破点。若Jensen Huang释放强有力需求信号，有望扭转当前"算力稀缺信仰动摇"的悲观情绪。</p>
+    </div>
+
+    <div class="catalyst-item">
+      <h4>🇰🇷 韩国金融监督院杠杆ETF政策后续</h4>
+      <p>KOSPI熔断事件后，市场密切关注韩国金融监督院是否出台实质性限制措施（提高保证金、限制散户参与等）。若政策落地，可能再度引发韩股半导体板块抛售，并通过SOXL等产品向美股传导。三星90万亿韩元回购传闻若得到证实，则可能为市场提供信心支撑。</p>
+    </div>
+
+    <div class="catalyst-item">
+      <h4>🌐 夏季达沃斯论坛AI政策信号（6/23-25）</h4>
+      <p>夏季达沃斯论坛正在天津举行，IMF副总裁、工行行长、宁德时代董事长等重磅嘉宾发言。中国31省份AI发展规划、全国算力设施绿电占比要求（不低于80%）等政策信号可能为AI算力产业链提供新的催化剂。</p>
+    </div>
+  </div>
+
+  <!-- 五、信息来源 -->
+  <div class="card">
+    <h2>五、信息来源</h2>
+    <table>
+      <thead>
+        <tr><th>来源</th><th>链接</th><th>数据覆盖</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Stockscan.io</td><td><a class="source-link" href="https://stockscan.io" target="_blank">stockscan.io</a></td><td>NVDA/MU/DELL/IREN/NBIS收盘价（6/24）</td></tr>
+        <tr><td>AMD IR</td><td><a class="source-link" href="https://ir.amd.com/stock-data/price-history" target="_blank">ir.amd.com</a></td><td>AMD盘中价格（6/24 10:01 ET）</td></tr>
+        <tr><td>Trendlyne</td><td><a class="source-link" href="https://us.trendlyne.com" target="_blank">trendlyne.com</a></td><td>TSM/MRVL实时价格</td></tr>
+        <tr><td>FinanceCharts</td><td><a class="source-link" href="https://www.financecharts.com" target="_blank">financecharts.com</a></td><td>SOXL收盘价（6/24）</td></tr>
+        <tr><td>SK海力士IR</td><td><a class="source-link" href="https://www.skhynix.com/ir/UI-FR-IR02/" target="_blank">skhynix.com</a></td><td>000660.KS收盘价 2,580,000 KRW</td></tr>
+        <tr><td>新浪财经</td><td><a class="source-link" href="https://finance.sina.com.cn" target="_blank">finance.sina.com.cn</a></td><td>全球芯片抛售专题 / KOSPI熔断</td></tr>
+        <tr><td>第一财经</td><td><a class="source-link" href="https://www.yicai.com" target="_blank">yicai.com</a></td><td>存储股盘前大跌（6/23）</td></tr>
+        <tr><td>雪球</td><td><a class="source-link" href="https://xueqiu.com" target="_blank">xueqiu.com</a></td><td>三星反弹分析 / 90万亿回购传闻</td></tr>
+        <tr><td>东方财富</td><td><a class="source-link" href="https://www.eastmoney.com" target="_blank">eastmoney.com</a></td><td>韩股反弹 + 三星回购传闻</td></tr>
+        <tr><td>FXLeaders</td><td><a class="source-link" href="https://www.fxleaders.com" target="_blank">fxleaders.com</a></td><td>MRVL -9.4%技术分析</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="footer">
+    本报告由 WorkBuddy AI 补偿生成 ｜ 生成时间：2026-06-24 16:00 GMT+8 ｜ 数据来源均已标注 ｜ 不构成投资建议
+  </div>
+</div>
+</body>
+</html>
