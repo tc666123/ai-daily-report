@@ -76,9 +76,10 @@ def should_generate_stock_report(dt):
     return not is_weekend(dt) and not is_us_holiday(dt)
 
 # ============ RSS 新闻抓取 ============
-def fetch_ai_news(max_per_feed=8):
-    """从RSS源抓取AI新闻"""
+def fetch_ai_news(max_per_feed=5):
+    """从RSS源抓取AI新闻，自动去重"""
     all_news = []
+    seen_titles = set()
     for feed_url in RSS_FEEDS:
         try:
             feed = feedparser.parse(feed_url)
@@ -88,78 +89,93 @@ def fetch_ai_news(max_per_feed=8):
                 if count >= max_per_feed:
                     break
                 title = entry.get("title", "").strip()
+                if not title:
+                    continue
+                # 去重：标题前30字作为指纹
+                title_key = title[:30]
+                if title_key in seen_titles:
+                    continue
+                seen_titles.add(title_key)
                 summary = entry.get("summary", entry.get("description", "")).strip()
-                # 清理HTML标签
-                summary = re.sub(r'<[^>]+>', '', summary)[:500]
+                summary = re.sub(r'<[^>]+>', '', summary)[:300]
                 link = entry.get("link", "")
                 published = entry.get("published", entry.get("updated", ""))
-                if title:
-                    all_news.append({
-                        "title": title,
-                        "summary": summary,
-                        "link": link,
-                        "published": published,
-                        "source": source_name,
-                    })
-                    count += 1
+                all_news.append({
+                    "title": title,
+                    "summary": summary,
+                    "link": link,
+                    "published": published,
+                    "source": source_name,
+                })
+                count += 1
         except Exception as e:
             print(f"  ⚠️ RSS抓取失败 {feed_url}: {e}")
-    print(f"📰 共抓取 {len(all_news)} 条AI新闻")
+    print(f"📰 共抓取 {len(all_news)} 条AI新闻（去重后）")
     return all_news
 
 # ============ 股价数据获取 ============
 def fetch_stock_data():
-    """使用yfinance获取股价数据"""
+    """使用yfinance批量获取股价数据（单次API调用）"""
     import yfinance as yf
+    symbols = [s[0] for s in STOCKS]
+    names = {s[0]: s[1] for s in STOCKS}
+
+    # 批量下载，1次请求拿全部
+    try:
+        data = yf.download(symbols, period="5d", progress=False, group_by='ticker')
+    except Exception as e:
+        print(f"  ⚠️ yfinance批量下载失败: {e}")
+        data = None
+
     stocks_data = []
-    for symbol, name in STOCKS:
+    for symbol in symbols:
         try:
-            ticker = yf.Ticker(symbol)
-            hist = ticker.history(period="5d")
+            if data is not None and symbol in data.columns.get_level_values(0):
+                hist = data[symbol]
+            elif data is not None and len(symbols) == 1:
+                hist = data
+            else:
+                hist = None
+
+            if hist is None or hist.empty:
+                # 降级：单独请求
+                ticker = yf.Ticker(symbol)
+                hist = ticker.history(period="5d")
+
             if hist.empty:
                 stocks_data.append({
-                    "symbol": symbol, "name": name,
+                    "symbol": symbol, "name": names[symbol],
                     "price": "N/A", "change_pct": 0, "direction": "flat",
-                    "info": "无数据",
                 })
                 continue
-            current_close = hist['Close'].iloc[-1]
+
+            current_close = float(hist['Close'].iloc[-1])
             if len(hist) >= 2:
-                prev_close = hist['Close'].iloc[-2]
+                prev_close = float(hist['Close'].iloc[-2])
                 change_pct = ((current_close - prev_close) / prev_close) * 100
                 direction = "up" if change_pct > 0 else ("down" if change_pct < 0 else "flat")
             else:
                 change_pct = 0
                 direction = "flat"
 
-            # 获取额外信息
-            info = ticker.info
-            market_cap = info.get("marketCap", 0)
-            pe_ratio = info.get("trailingPE", 0)
-            volume = info.get("volume", 0)
-
             stocks_data.append({
                 "symbol": symbol,
-                "name": name,
-                "price": round(float(current_close), 2),
-                "change_pct": round(float(change_pct), 2),
+                "name": names[symbol],
+                "price": round(current_close, 2),
+                "change_pct": round(change_pct, 2),
                 "direction": direction,
-                "market_cap": market_cap,
-                "pe_ratio": pe_ratio,
-                "volume": volume,
             })
         except Exception as e:
             print(f"  ⚠️ 股价获取失败 {symbol}: {e}")
             stocks_data.append({
-                "symbol": symbol, "name": name,
+                "symbol": symbol, "name": names[symbol],
                 "price": "N/A", "change_pct": 0, "direction": "flat",
-                "info": f"获取失败: {e}",
             })
     print(f"📈 共获取 {len(stocks_data)} 只股票数据")
     return stocks_data
 
 # ============ GLM-4-Flash API ============
-def call_glm(prompt, system_prompt="", temperature=0.7, max_tokens=4096):
+def call_glm(prompt, system_prompt="", temperature=0.7, max_tokens=2048):
     """调用智谱GLM-4-Flash API"""
     if not ZHIPU_API_KEY:
         return None
@@ -216,56 +232,22 @@ def generate_ai_report_content(news_items, beijing_dt):
     date_str = beijing_dt.strftime("%Y-%m-%d")
     weekday = WEEKDAY_CN[beijing_dt.weekday()]
 
-    # 准备新闻摘要
+    # 准备新闻摘要（精简：只取前15条，摘要截断到100字）
     news_text = ""
-    for i, n in enumerate(news_items[:30], 1):
-        news_text += f"\n[{i}] 标题: {n['title']}\n    摘要: {n['summary'][:200]}\n    来源: {n['source']}\n"
+    for i, n in enumerate(news_items[:15], 1):
+        news_text += f"\n[{i}] {n['title']} | {n['summary'][:100]} | {n['source']}\n"
 
-    system_prompt = """你是AI行业分析师，负责编写每日AI行业早报。你必须严格按照JSON格式输出，不要输出其他内容。"""
+    system_prompt = "你是AI行业分析师，输出JSON格式AI行业早报，不要输出其他内容。"
 
-    prompt = f"""基于以下今日({date_str} {weekday})RSS抓取的AI行业新闻，生成一份结构化的中文AI行业早报。
-
-原始新闻数据：
+    prompt = f"""今日({date_str} {weekday})AI新闻：
 {news_text}
 
-请将新闻整理为以下8个章节，每个章节包含2-5条新闻条目。如果某个章节没有相关新闻，可以写1条综合分析。
+整理为8章JSON：1.AI行业全景 2.AI编程工具生态 3.主流大模型 4.大厂AI产品 5.AI基础设施 6.半导体行业 7.今日摘要(3-5条) 8.信息来源(3-5个URL)。每章2-4条。
 
-章节：
-1. AI行业全景（重大事件、融资、并购等）
-2. AI编程工具生态（CodeBuddy/WorkBuddy/Cursor/Copilot等）
-3. 主流大模型进展（GPT/Claude/Gemini/GLM/Llama等）
-4. 大厂AI产品动态（Google/Microsoft/Apple/Meta/OpenAI等）
-5. AI基础设施（芯片、数据中心、能源、算力等）
-6. 半导体行业（芯片制造、设备、材料等，与股票报告呼应）
-7. 今日摘要（3-5条核心要点）
-8. 信息来源（列出3-5个主要来源URL）
+输出JSON：
+{{"chapters":[{{"title":"一、AI行业全景","items":[{{"tag":"重磅","tag_class":"tag-red","title":"标题","body":"80-150字分析","source":"来源"}}]}}],"summary":["要点"],"sources":[{{"url":"URL","text":"来源名"}}]}}
 
-请严格输出以下JSON格式（不要输出其他任何内容）：
-```json
-{{
-  "chapters": [
-    {{
-      "title": "一、AI行业全景",
-      "items": [
-        {{
-          "tag": "重磅",
-          "tag_class": "tag-red",
-          "title": "新闻标题",
-          "body": "100-200字的详细分析",
-          "source": "来源 日期"
-        }}
-      ]
-    }}
-  ],
-  "summary": ["要点1", "要点2", "要点3"],
-  "sources": [
-    {{"url": "https://...", "text": "来源名称"}}
-  ]
-}}
-```
-
-tag_class可选值: "tag-red"(重磅/突发), "tag-blue"(今日首发/新品), "tag-gray"(政策/行业/生态)
-tag可选值: 重磅, 突发, 今日首发, 新品, 政策, 行业, 生态, 趋势"""
+tag_class: tag-red/tag-blue/tag-gray"""
 
     result = call_glm_json(prompt, system_prompt)
     if not result:
@@ -299,62 +281,24 @@ def generate_stock_report_content(stocks_data, beijing_dt):
     date_str = beijing_dt.strftime("%Y-%m-%d")
     weekday = WEEKDAY_CN[beijing_dt.weekday()]
 
-    # 准备股价数据
+    # 准备股价数据（精简格式）
     stock_text = ""
     for s in stocks_data:
         price = s.get("price", "N/A")
         pct = s.get("change_pct", 0)
-        direction = "涨" if s.get("direction") == "up" else ("跌" if s.get("direction") == "down" else "平")
-        cap = s.get("market_cap", 0)
-        cap_str = f"{cap/1e12:.2f}万亿" if cap and cap > 1e12 else (f"{cap/1e8:.1f}亿" if cap else "N/A")
-        stock_text += f"\n{s['symbol']} {s['name']}: 收盘价{price} ({direction}{pct}%), 市值{cap_str}"
+        direction = "↑" if s.get("direction") == "up" else ("↓" if s.get("direction") == "down" else "→")
+        stock_text += f"{s['symbol']}({s['name']}):{price}{direction}{pct}% "
 
-    system_prompt = """你是半导体行业和科技股分析师，负责编写每日半导体科技股早报。你必须严格按照JSON格式输出，不要输出其他内容。"""
+    system_prompt = "你是半导体科技股分析师，输出JSON格式股票早报，不要输出其他内容。"
 
-    prompt = f"""基于以下今日({date_str} {weekday})的半导体科技股收盘数据，生成一份结构化的中文股票早报。
+    prompt = f"""今日({date_str} {weekday})收盘：{stock_text}
 
-股价数据：
-{stock_text}
+生成5章JSON：1.板块综述 2.个股分析(覆盖全部11只) 3.行业要闻 4.风险提示 5.关注要点。涨红跌绿。
 
-报告分为5个章节：
-1. 板块综述（整体走势分析）
-2. 个股分析（每只股票的详细分析，必须覆盖全部11只）
-3. 行业要闻（半导体行业相关新闻和趋势）
-4. 风险提示（短期风险、长期风险）
-5. 关注要点（明日关注事项）
+输出JSON：
+{{"chapters":[{{"title":"一、板块综述","items":[{{"tag":"综述","tag_class":"tag-gray","title":"标题","body":"80-150字","source":"综合分析"}}]}}],"stock_cards":[{{"symbol":"NVDA","name":"英伟达","detail":"80-120字分析"}}],"summary":["要点"],"sources":[]}}
 
-注意：A股/中国市场涨跌颜色规则为涨红跌绿。
-
-请严格输出以下JSON格式（不要输出其他任何内容）：
-```json
-{{
-  "chapters": [
-    {{
-      "title": "一、板块综述",
-      "items": [
-        {{
-          "tag": "综述",
-          "tag_class": "tag-gray",
-          "title": "标题",
-          "body": "100-200字分析",
-          "source": "综合分析"
-        }}
-      ]
-    }}
-  ],
-  "stock_cards": [
-    {{
-      "symbol": "NVDA",
-      "name": "英伟达",
-      "detail": "100-150字个股分析"
-    }}
-  ],
-  "summary": ["要点1", "要点2"],
-  "sources": [{{"url": "https://...", "text": "来源"}}]
-}}
-```
-
-tag_class可选: "tag-red"(利好), "tag-gray"(综述/中性), "tag-blue"(新品/首发)"""
+tag_class: tag-red/tag-blue/tag-gray"""
 
     result = call_glm_json(prompt, system_prompt)
     if not result:
