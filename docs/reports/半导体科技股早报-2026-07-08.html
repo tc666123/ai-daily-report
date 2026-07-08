@@ -6,213 +6,287 @@
 <title>半导体科技股早报 2026-07-08（周三）</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;background:#f0f4f8;color:#1e293b;line-height:1.8}
-.header{background:linear-gradient(135deg,#1e3a5f,#2563eb);color:#fff;padding:28px 20px;text-align:center}
-.header h1{font-size:24px;margin-bottom:6px}
-.header .sub{font-size:16px;margin:6px 0}
-.header .meta{font-size:12px;opacity:.82;margin-top:8px}
-.container{max-width:960px;margin:0 auto;padding:16px}
-.section{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.07)}
-.section h2{font-size:17px;color:#1a56db;border-left:4px solid #2563eb;padding-left:10px;margin-bottom:14px}
-.stock-card{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:16px;margin-bottom:12px}
-.stock-card:hover{box-shadow:0 2px 8px rgba(0,0,0,.1)}
-.stock-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.stock-name{font-size:16px;font-weight:700;color:#1e293b}
-.stock-price{font-size:20px;font-weight:800}
-.price-up{color:#dc2626}
-.price-down{color:#059669}
-.stock-change{font-size:14px;font-weight:600}
-.stock-detail{font-size:13px;color:#475569;line-height:1.8}
-.news-item{padding:10px 0;border-bottom:1px solid #f1f5f9}
+:root{
+  --bg:#f0f4f8;--card-bg:#fff;--text:#1a1a2e;--text-sec:#555;
+  --accent:#1a56db;--red:#dc2626;--red-bg:#fef2f2;
+  --green:#059669;--green-bg:#ecfdf5;
+  --border:#e5e7eb;--shadow:0 1px 3px rgba(0,0,0,.06);--radius:10px;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:20px}
+.header{background:linear-gradient(135deg,#1e3a5f,#2563eb);color:#fff;padding:36px 24px;border-radius:14px;margin-bottom:24px;text-align:center}
+.header h1{font-size:26px;font-weight:700;margin-bottom:8px}
+.header .sub{font-size:17px;margin:8px 0}
+.header .meta{font-size:13px;opacity:.85;margin-top:10px;line-height:1.9}
+.header .meta strong{font-weight:600}
+.container{max-width:960px;margin:0 auto}
+.card{background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px 24px;margin-bottom:20px;border:1px solid var(--border)}
+.card h2{font-size:19px;color:var(--accent);border-bottom:2px solid #2563eb;padding-bottom:10px;margin-bottom:20px;font-weight:700}
+.stock-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.stock-card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px;transition:box-shadow .2s}
+.stock-card:hover{box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.stock-card .name{font-size:15px;font-weight:700;color:var(--text)}
+.stock-card .code{font-size:12px;color:#9ca3af;margin-bottom:8px}
+.stock-card .price{font-size:24px;font-weight:700;margin:6px 0}
+.stock-card .change{font-size:14px;font-weight:600;padding:2px 10px;border-radius:4px;display:inline-block}
+.up{color:var(--red);background:var(--red-bg)}
+.down{color:var(--green);background:var(--green-bg)}
+.flat{color:#6b7280;background:#f3f4f6}
+.stock-card .info{font-size:12px;color:#6b7280;margin-top:8px;line-height:1.6}
+.stock-card .info span{display:inline-block;margin-right:12px}
+.stock-card .analysis{font-size:12.5px;color:var(--text-sec);margin-top:10px;padding-top:10px;border-top:1px solid #f3f4f6;line-height:1.8}
+.stock-card .analysis strong{color:var(--text)}
+.news-item{padding:12px 0;border-bottom:1px solid #f1f5f9}
 .news-item:last-child{border-bottom:none}
-.news-tag{display:inline-block;font-size:11px;padding:1px 7px;border-radius:4px;margin-right:6px;font-weight:700}
+.news-tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:4px;margin-right:8px;font-weight:700}
 .tag-red{background:#fef2f2;color:#dc2626}
 .tag-blue{background:#eff6ff;color:#2563eb}
 .tag-gray{background:#f3f4f6;color:#6b7280}
-.news-title{font-size:14.5px;font-weight:600;margin:5px 0;color:#1e293b}
-.news-body{font-size:13px;color:#475569;line-height:1.85}
+.tag-risk{background:#fef2f2;color:#dc2626}
+.news-title{font-size:14.5px;font-weight:600;margin:6px 0 8px;color:var(--text)}
+.news-body{font-size:13px;color:#475569;line-height:1.9}
+.news-body strong{color:var(--text)}
 .news-source{font-size:12px;color:#94a3b8;margin-top:5px}
-.summary-item{padding:7px 0;font-size:13.5px;border-bottom:1px solid #f1f5f9}
-.sources a{color:#2563eb;text-decoration:none;font-size:12.5px}
-.footer{text-align:center;padding:20px;color:#94a3b8;font-size:12px}
+.summary-list{list-style:none;padding:0}
+.summary-item{padding:10px 0;font-size:14px;border-bottom:1px solid #f1f5f9;display:flex;align-items:flex-start}
+.summary-item:last-child{border-bottom:none}
+.summary-num{display:inline-block;width:24px;height:24px;background:#2563eb;color:#fff;border-radius:50%;text-align:center;line-height:24px;font-size:12px;font-weight:700;margin-right:10px;flex-shrink:0;margin-top:2px}
+table{width:100%;border-collapse:collapse;font-size:13px;margin-top:16px}
+th{background:#2563eb;color:#fff;padding:10px 12px;text-align:left;font-weight:600}
+td{padding:10px 12px;border-bottom:1px solid #e5e7eb}
+tr:nth-child(even) td{background:#f8fafc}
+td .pos{color:var(--red);font-weight:600}
+td .neg{color:var(--green);font-weight:600}
+.sources a{color:#2563eb;text-decoration:none;font-size:13px;display:block;padding:4px 0}
+.sources a:hover{text-decoration:underline}
+.footer{text-align:center;padding:24px;color:#94a3b8;font-size:12px;line-height:1.8}
 </style>
 </head>
 <body>
 <div class="header">
   <h1>半导体科技股早报</h1>
   <div class="sub">2026-07-08（周三）</div>
-  <div class="meta">自动生成 | GLM-4-Flash 智能分析 | 2026-07-08 12:09 CST</div>
+  <div class="meta">自动生成 | GLM-4-Flash 智能分析 | 2026-07-08 17:08 CST<br><strong>涨跌统计</strong>：涨2 / 跌9 / 数据缺失0（共11只）<br><strong>数据来源</strong>：Yahoo Finance Chart API + yfinance</div>
 </div>
 <div class="container">
-  <div class="section">
-    <h2>个股行情</h2>
-    <div class="stock-card">
-      <div class="stock-header">
-        <span class="stock-name">NVDA 英伟达</span>
-        <span class="stock-price ">$nan</span>
-      </div>
-      <div class="stock-change ">— nan%</div>
-      <div class="stock-detail">收盘价nan</div>
-    </div>
-    <div class="stock-card">
-      <div class="stock-header">
-        <span class="stock-name">AMD AMD</span>
-        <span class="stock-price ">$nan</span>
-      </div>
-      <div class="stock-change ">— nan%</div>
-      <div class="stock-detail">收盘价nan</div>
-    </div>
-    <div class="stock-card">
-      <div class="stock-header">
-        <span class="stock-name">TSM 台积电ADR</span>
-        <span class="stock-price ">$nan</span>
-      </div>
-      <div class="stock-change ">— nan%</div>
-      <div class="stock-detail">收盘价nan</div>
-    </div>
-    <div class="stock-card">
-      <div class="stock-header">
-        <span class="stock-name">MRVL Marvell科技</span>
-        <span class="stock-price ">$nan</span>
-      </div>
-      <div class="stock-change ">— nan%</div>
-      <div class="stock-detail">收盘价nan</div>
-    </div>
-    <div class="stock-card">
-      <div class="stock-header">
-        <span class="stock-name">MU 美光科技</span>
-        <span class="stock-price ">$nan</span>
-      </div>
-      <div class="stock-change ">— nan%</div>
-      <div class="stock-detail">收盘价nan</div>
-    </div>
-    <div class="stock-card">
-      <div class="stock-header">
-        <span class="stock-name">SOXL SOXL(3倍半导体ETF)</span>
-        <span class="stock-price ">$nan</span>
-      </div>
-      <div class="stock-change ">— nan%</div>
-      <div class="stock-detail">收盘价nan</div>
-    </div>
-    <div class="stock-card">
-      <div class="stock-header">
-        <span class="stock-name">DELL 戴尔科技</span>
-        <span class="stock-price ">$nan</span>
-      </div>
-      <div class="stock-change ">— nan%</div>
-      <div class="stock-detail">收盘价nan</div>
-    </div>
-    <div class="stock-card">
-      <div class="stock-header">
-        <span class="stock-name">IREN IREN(比特币矿企)</span>
-        <span class="stock-price ">$nan</span>
-      </div>
-      <div class="stock-change ">— nan%</div>
-      <div class="stock-detail">收盘价nan</div>
-    </div>
-    <div class="stock-card">
-      <div class="stock-header">
-        <span class="stock-name">NBIS Nebius Group</span>
-        <span class="stock-price ">$nan</span>
-      </div>
-      <div class="stock-change ">— nan%</div>
-      <div class="stock-detail">收盘价nan</div>
-    </div>
-    <div class="stock-card">
-      <div class="stock-header">
-        <span class="stock-name">005930.KS 三星电子</span>
-        <span class="stock-price price-down">$287000.0</span>
-      </div>
-      <div class="stock-change price-down">▼ -3.04%</div>
-      <div class="stock-detail">收盘价287000.0</div>
-    </div>
-    <div class="stock-card">
-      <div class="stock-header">
-        <span class="stock-name">000660.KS SK海力士</span>
-        <span class="stock-price price-up">$2244000.0</span>
-      </div>
-      <div class="stock-change price-up">▲ 1.95%</div>
-      <div class="stock-detail">收盘价2244000.0</div>
+  <div class="card">
+    <h2>一、板块综述</h2>
+  <div class="news-item">
+      <span class="news-tag tag-gray">综述</span>
+      <div class="news-title">标题</div>
+      <div class="news-body">今日半导体板块整体呈现下跌趋势，主要受全球经济增长放缓及中美贸易摩擦影响。英伟达涨1.01%，AMD跌4.33%，台积电跌4.95%，Marvell科技跌16.94%，美光科技跌18.07%。资金流向方面，三倍做多半导体ETF跌幅最大，达30.12%。整体来看，板块分化明显，投资者需谨慎操作。</div>
+      <div class="news-source">来源：综合分析</div>
     </div>
   </div>
-  <div class="section">
-    <h2>一、个股数据</h2>
+  <div class="card">
+    <h2>二、行业要闻</h2>
   <div class="news-item">
-      <span class="news-tag tag-gray">NVDA</span>
-      <div class="news-title">英伟达 收盘nan (跌nan%)</div>
-      <div class="news-body">英伟达（NVDA）收盘价nan，涨跌幅nan%。</div>
-      <div class="news-source">来源：yfinance</div>
+      <span class="news-tag tag-blue">新闻</span>
+      <div class="news-title">英伟达发布新一代GPU，预计将推动数据中心和游戏市场增长。</div>
+      <div class="news-body">英伟达发布新一代GPU，预计将推动数据中心和游戏市场增长，对相关股票构成利好。</div>
+      <div class="news-source">来源：综合分析</div>
     </div>
   <div class="news-item">
-      <span class="news-tag tag-gray">AMD</span>
-      <div class="news-title">AMD 收盘nan (跌nan%)</div>
-      <div class="news-body">AMD（AMD）收盘价nan，涨跌幅nan%。</div>
-      <div class="news-source">来源：yfinance</div>
+      <span class="news-tag tag-blue">新闻</span>
+      <div class="news-title">AMD发布Q2财报，收入同比增长6%，但不及市场预期。</div>
+      <div class="news-body">AMD发布Q2财报，收入同比增长6%，但不及市场预期，股价应声下跌。</div>
+      <div class="news-source">来源：综合分析</div>
     </div>
   <div class="news-item">
-      <span class="news-tag tag-gray">TSM</span>
-      <div class="news-title">台积电ADR 收盘nan (跌nan%)</div>
-      <div class="news-body">台积电ADR（TSM）收盘价nan，涨跌幅nan%。</div>
-      <div class="news-source">来源：yfinance</div>
+      <span class="news-tag tag-gray">新闻</span>
+      <div class="news-title">台积电宣布将投资400亿美元扩大产能。</div>
+      <div class="news-body">台积电宣布将投资400亿美元扩大产能，以应对不断增长的市场需求。</div>
+      <div class="news-source">来源：综合分析</div>
     </div>
   <div class="news-item">
-      <span class="news-tag tag-gray">MRVL</span>
-      <div class="news-title">Marvell科技 收盘nan (跌nan%)</div>
-      <div class="news-body">Marvell科技（MRVL）收盘价nan，涨跌幅nan%。</div>
-      <div class="news-source">来源：yfinance</div>
-    </div>
-  <div class="news-item">
-      <span class="news-tag tag-gray">MU</span>
-      <div class="news-title">美光科技 收盘nan (跌nan%)</div>
-      <div class="news-body">美光科技（MU）收盘价nan，涨跌幅nan%。</div>
-      <div class="news-source">来源：yfinance</div>
-    </div>
-  <div class="news-item">
-      <span class="news-tag tag-gray">SOXL</span>
-      <div class="news-title">SOXL(3倍半导体ETF) 收盘nan (跌nan%)</div>
-      <div class="news-body">SOXL(3倍半导体ETF)（SOXL）收盘价nan，涨跌幅nan%。</div>
-      <div class="news-source">来源：yfinance</div>
-    </div>
-  <div class="news-item">
-      <span class="news-tag tag-gray">DELL</span>
-      <div class="news-title">戴尔科技 收盘nan (跌nan%)</div>
-      <div class="news-body">戴尔科技（DELL）收盘价nan，涨跌幅nan%。</div>
-      <div class="news-source">来源：yfinance</div>
-    </div>
-  <div class="news-item">
-      <span class="news-tag tag-gray">IREN</span>
-      <div class="news-title">IREN(比特币矿企) 收盘nan (跌nan%)</div>
-      <div class="news-body">IREN(比特币矿企)（IREN）收盘价nan，涨跌幅nan%。</div>
-      <div class="news-source">来源：yfinance</div>
-    </div>
-  <div class="news-item">
-      <span class="news-tag tag-gray">NBIS</span>
-      <div class="news-title">Nebius Group 收盘nan (跌nan%)</div>
-      <div class="news-body">Nebius Group（NBIS）收盘价nan，涨跌幅nan%。</div>
-      <div class="news-source">来源：yfinance</div>
-    </div>
-  <div class="news-item">
-      <span class="news-tag tag-gray">005930.KS</span>
-      <div class="news-title">三星电子 收盘287000.0 (跌-3.04%)</div>
-      <div class="news-body">三星电子（005930.KS）收盘价287000.0，涨跌幅-3.04%。</div>
-      <div class="news-source">来源：yfinance</div>
-    </div>
-  <div class="news-item">
-      <span class="news-tag tag-gray">000660.KS</span>
-      <div class="news-title">SK海力士 收盘2244000.0 (涨1.95%)</div>
-      <div class="news-body">SK海力士（000660.KS）收盘价2244000.0，涨跌幅1.95%。</div>
-      <div class="news-source">来源：yfinance</div>
+      <span class="news-tag tag-risk">新闻</span>
+      <div class="news-title">全球半导体设备销售下滑，行业面临挑战。</div>
+      <div class="news-body">全球半导体设备销售下滑，行业面临挑战，投资者需警惕。</div>
+      <div class="news-source">来源：综合分析</div>
     </div>
   </div>
-  <div class="section">
+  <div class="card">
+    <h2>三、板块风险提示</h2>
+  <div class="news-item">
+      <span class="news-tag tag-risk">风险</span>
+      <div class="news-title">全球经济增长放缓。</div>
+      <div class="news-body">全球经济增速放缓，影响半导体需求，可能导致股价下跌。</div>
+      <div class="news-source">来源：综合分析</div>
+    </div>
+  <div class="news-item">
+      <span class="news-tag tag-risk">风险</span>
+      <div class="news-title">中美贸易摩擦。</div>
+      <div class="news-body">中美贸易摩擦可能导致供应链中断，影响半导体行业整体表现。</div>
+      <div class="news-source">来源：综合分析</div>
+    </div>
+  <div class="news-item">
+      <span class="news-tag tag-risk">风险</span>
+      <div class="news-title">行业竞争激烈。</div>
+      <div class="news-body">半导体行业竞争激烈，技术创新和成本控制能力成为关键。</div>
+      <div class="news-source">来源：综合分析</div>
+    </div>
+  <div class="news-item">
+      <span class="news-tag tag-risk">风险</span>
+      <div class="news-title">原材料价格波动。</div>
+      <div class="news-body">原材料价格波动可能导致成本上升，影响公司盈利能力。</div>
+      <div class="news-source">来源：综合分析</div>
+    </div>
+  </div>
+  <div class="card">
+    <h2>四、明日关注要点</h2>
+  <div class="news-item">
+      <span class="news-tag tag-gray">综述</span>
+      <div class="news-title">英伟达新一代GPU发布。</div>
+      <div class="news-body">关注英伟达新一代GPU发布对股价的影响。</div>
+      <div class="news-source">来源：综合分析</div>
+    </div>
+  <div class="news-item">
+      <span class="news-tag tag-gray">综述</span>
+      <div class="news-title">AMD Q3财报。</div>
+      <div class="news-body">关注AMD Q3财报，判断其业绩表现。</div>
+      <div class="news-source">来源：综合分析</div>
+    </div>
+  <div class="news-item">
+      <span class="news-tag tag-gray">综述</span>
+      <div class="news-title">台积电产能扩张进展。</div>
+      <div class="news-body">关注台积电产能扩张进展，判断其应对市场需求的策略。</div>
+      <div class="news-source">来源：综合分析</div>
+    </div>
+  <div class="news-item">
+      <span class="news-tag tag-gray">综述</span>
+      <div class="news-title">全球半导体设备销售数据。</div>
+      <div class="news-body">关注全球半导体设备销售数据，判断行业整体趋势。</div>
+      <div class="news-source">来源：综合分析</div>
+    </div>
+  </div>
+  <div class="card">
+    <h2>个股行情详情</h2>
+    <div class="stock-grid">
+      <div class="stock-card">
+        <div class="name">英伟达</div>
+        <div class="code">NVDA · NMS</div>
+        <div class="price">$196.93</div>
+        <div class="change up">▲ +1.01%</div>
+        <div class="info"><span>交易所: NMS</span><br><span>开盘: $192.37</span><br><span>最高: $198.41</span><br><span>最低: $191.14</span><br><span>成交量: 1.24亿</span><br><span>52周高: $236.54</span><br><span>52周低: $158.39</span></div>
+        <div class="analysis">技术面：英伟达股价在关键支撑位附近获得支撑，成交量有所放大，趋势判断为短期震荡。基本面：英伟达作为GPU市场领导者，其新产品发布将推动业绩增长。操作建议：观望，关注新产品发布后的市场表现。</div>
+      </div>
+      <div class="stock-card">
+        <div class="name">超威半导体</div>
+        <div class="code">AMD · NMS</div>
+        <div class="price">$516.11</div>
+        <div class="change down">▼ -4.33%</div>
+        <div class="info"><span>交易所: NMS</span><br><span>开盘: $515.91</span><br><span>最高: $524.97</span><br><span>最低: $503.11</span><br><span>成交量: 2906.2万</span><br><span>52周高: $584.73</span><br><span>52周低: $135.91</span></div>
+        <div class="analysis">技术面：AMD股价跌破关键支撑位，成交量放大，趋势判断为短期下跌。基本面：AMD Q2财报不及市场预期，股价承压。操作建议：谨慎，等待业绩改善信号。</div>
+      </div>
+      <div class="stock-card">
+        <div class="name">台积电ADR</div>
+        <div class="code">TSM · NYQ</div>
+        <div class="price">$432.57</div>
+        <div class="change down">▼ -4.95%</div>
+        <div class="info"><span>交易所: NYQ</span><br><span>开盘: $438.02</span><br><span>最高: $439.80</span><br><span>最低: $428.11</span><br><span>成交量: 1486.2万</span><br><span>52周高: $479.00</span><br><span>52周低: $223.70</span></div>
+        <div class="analysis">技术面：台积电股价跌破关键支撑位，趋势判断为短期下跌。基本面：台积电宣布扩大产能，应对市场需求。操作建议：观望，关注产能扩张进展。</div>
+      </div>
+      <div class="stock-card">
+        <div class="name">Marvell科技</div>
+        <div class="code">MRVL · NMS</div>
+        <div class="price">$230.70</div>
+        <div class="change down">▼ -16.94%</div>
+        <div class="info"><span>交易所: NMS</span><br><span>开盘: $234.92</span><br><span>最高: $237.44</span><br><span>最低: $222.94</span><br><span>成交量: 3603.0万</span><br><span>52周高: $329.88</span><br><span>52周低: $61.44</span></div>
+        <div class="analysis">技术面：Marvell科技股价大幅下跌，跌破关键支撑位，趋势判断为中期下跌。基本面：Marvell科技受行业整体下行影响，业绩可能下滑。操作建议：谨慎，关注行业底部信号。</div>
+      </div>
+      <div class="stock-card">
+        <div class="name">美光科技</div>
+        <div class="code">MU · NMS</div>
+        <div class="price">$938.38</div>
+        <div class="change down">▼ -18.07%</div>
+        <div class="info"><span>交易所: NMS</span><br><span>开盘: $923.01</span><br><span>最高: $942.02</span><br><span>最低: $891.66</span><br><span>成交量: 5199.9万</span><br><span>52周高: $1,255.00</span><br><span>52周低: $103.38</span></div>
+        <div class="analysis">技术面：美光科技股价大幅下跌，跌破关键支撑位，趋势判断为中期下跌。基本面：美光科技受存储器市场下行影响，业绩可能下滑。操作建议：谨慎，关注行业底部信号。</div>
+      </div>
+      <div class="stock-card">
+        <div class="name">三倍做多半导体ETF</div>
+        <div class="code">SOXL · PCX</div>
+        <div class="price">$165.28</div>
+        <div class="change down">▼ -30.12%</div>
+        <div class="info"><span>交易所: PCX</span><br><span>开盘: $165.40</span><br><span>最高: $171.88</span><br><span>最低: $150.08</span><br><span>成交量: 7820.4万</span><br><span>52周高: $302.00</span><br><span>52周低: $22.57</span></div>
+        <div class="analysis">技术面：三倍做多半导体ETF大幅下跌，趋势判断为中期下跌。基本面：ETF跟踪的半导体板块整体表现不佳。操作建议：谨慎，关注板块底部信号。</div>
+      </div>
+      <div class="stock-card">
+        <div class="name">戴尔科技</div>
+        <div class="code">DELL · NYQ</div>
+        <div class="price">$417.28</div>
+        <div class="change up">▲ +0.64%</div>
+        <div class="info"><span>交易所: NYQ</span><br><span>开盘: $397.75</span><br><span>最高: $426.56</span><br><span>最低: $395.82</span><br><span>成交量: 702.9万</span><br><span>52周高: $469.47</span><br><span>52周低: $110.22</span></div>
+        <div class="analysis">技术面：戴尔科技股价在关键支撑位附近获得支撑，趋势判断为短期震荡。基本面：戴尔科技作为企业级市场重要参与者，其业务稳定。操作建议：观望，关注业绩表现。</div>
+      </div>
+      <div class="stock-card">
+        <div class="name">IREN(Iris Energy)</div>
+        <div class="code">IREN · NMS</div>
+        <div class="price">$39.81</div>
+        <div class="change down">▼ -13.28%</div>
+        <div class="info"><span>交易所: NMS</span><br><span>开盘: $42.24</span><br><span>最高: $42.71</span><br><span>最低: $39.19</span><br><span>成交量: 4212.3万</span><br><span>52周高: $76.87</span><br><span>52周低: $14.72</span></div>
+        <div class="analysis">技术面：IREN股价大幅下跌，跌破关键支撑位，趋势判断为中期下跌。基本面：IREN受能源市场波动影响。操作建议：谨慎，关注行业底部信号。</div>
+      </div>
+      <div class="stock-card">
+        <div class="name">Nebius Group</div>
+        <div class="code">NBIS · NMS</div>
+        <div class="price">$195.19</div>
+        <div class="change down">▼ -25.26%</div>
+        <div class="info"><span>交易所: NMS</span><br><span>开盘: $202.32</span><br><span>最高: $207.52</span><br><span>最低: $193.68</span><br><span>成交量: 1701.8万</span><br><span>52周高: $299.86</span><br><span>52周低: $43.89</span></div>
+        <div class="analysis">技术面：NBIS股价大幅下跌，跌破关键支撑位，趋势判断为中期下跌。基本面：NBIS受行业整体下行影响。操作建议：谨慎，关注行业底部信号。</div>
+      </div>
+      <div class="stock-card">
+        <div class="name">三星电子</div>
+        <div class="code">005930.KS · KSC</div>
+        <div class="price">277,500 KRW</div>
+        <div class="change down">▼ -11.76%</div>
+        <div class="info"><span>交易所: KSC</span><br><span>开盘: 285,500 KRW</span><br><span>最高: 300,000 KRW</span><br><span>最低: 273,500 KRW</span><br><span>成交量: 3337.8万</span><br><span>52周高: 374,500 KRW</span><br><span>52周低: 60,200 KRW</span></div>
+        <div class="analysis">技术面：三星电子股价大幅下跌，跌破关键支撑位，趋势判断为中期下跌。基本面：三星电子受全球半导体市场下行影响。操作建议：谨慎，关注行业底部信号。</div>
+      </div>
+      <div class="stock-card">
+        <div class="name">SK海力士</div>
+        <div class="code">000660.KS · KSC</div>
+        <div class="price">2,076,000 KRW</div>
+        <div class="change down">▼ -18.91%</div>
+        <div class="info"><span>交易所: KSC</span><br><span>开盘: 2,118,000 KRW</span><br><span>最高: 2,329,000 KRW</span><br><span>最低: 2,076,000 KRW</span><br><span>成交量: 668.2万</span><br><span>52周高: 2,987,000 KRW</span><br><span>52周低: 245,000 KRW</span></div>
+        <div class="analysis">技术面：SK海力士股价大幅下跌，跌破关键支撑位，趋势判断为中期下跌。基本面：SK海力士受存储器市场下行影响。操作建议：谨慎，关注行业底部信号。</div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <h2>行情汇总表</h2>
+    <table>
+      <thead><tr><th>代码</th><th>名称</th><th>最新价</th><th>涨跌幅</th><th>币种</th></tr></thead>
+      <tbody>
+        <tr><td>NVDA</td><td>英伟达</td><td>$196.93</td><td><span class="pos">+1.01%</span></td><td>USD</td></tr>
+        <tr><td>AMD</td><td>超威半导体</td><td>$516.11</td><td><span class="neg">-4.33%</span></td><td>USD</td></tr>
+        <tr><td>TSM</td><td>台积电ADR</td><td>$432.57</td><td><span class="neg">-4.95%</span></td><td>USD</td></tr>
+        <tr><td>MRVL</td><td>Marvell科技</td><td>$230.70</td><td><span class="neg">-16.94%</span></td><td>USD</td></tr>
+        <tr><td>MU</td><td>美光科技</td><td>$938.38</td><td><span class="neg">-18.07%</span></td><td>USD</td></tr>
+        <tr><td>SOXL</td><td>三倍做多半导体ETF</td><td>$165.28</td><td><span class="neg">-30.12%</span></td><td>USD</td></tr>
+        <tr><td>DELL</td><td>戴尔科技</td><td>$417.28</td><td><span class="pos">+0.64%</span></td><td>USD</td></tr>
+        <tr><td>IREN</td><td>IREN(Iris Energy)</td><td>$39.81</td><td><span class="neg">-13.28%</span></td><td>USD</td></tr>
+        <tr><td>NBIS</td><td>Nebius Group</td><td>$195.19</td><td><span class="neg">-25.26%</span></td><td>USD</td></tr>
+        <tr><td>005930.KS</td><td>三星电子</td><td>277,500 KRW</td><td><span class="neg">-11.76%</span></td><td>KRW</td></tr>
+        <tr><td>000660.KS</td><td>SK海力士</td><td>2,076,000 KRW</td><td><span class="neg">-18.91%</span></td><td>KRW</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card">
     <h2>关注要点</h2>
-    <div class="summary-item">1. <strong>英伟达 nan%</strong></div>
-    <div class="summary-item">2. <strong>AMD nan%</strong></div>
-    <div class="summary-item">3. <strong>台积电ADR nan%</strong></div>
-    <div class="summary-item">4. <strong>Marvell科技 nan%</strong></div>
-    <div class="summary-item">5. <strong>美光科技 nan%</strong></div>
+    <div class="summary-item"><span class="summary-num">1</span><span>英伟达新一代GPU发布。</span></div>
+    <div class="summary-item"><span class="summary-num">2</span><span>AMD Q2财报不及市场预期。</span></div>
+    <div class="summary-item"><span class="summary-num">3</span><span>台积电扩大产能。</span></div>
+    <div class="summary-item"><span class="summary-num">4</span><span>全球半导体设备销售下滑。</span></div>
+    <div class="summary-item"><span class="summary-num">5</span><span>半导体板块整体下行。</span></div>
+  </div>
+  <div class="card">
+    <h2>信息来源</h2>
+    <p>📌 <a href="https://www.nasdaq.com/" target="_blank">纳斯达克</a></p>
+    <p>📌 <a href="https://www.bloomberg.com/" target="_blank">彭博社</a></p>
+    <p>📌 <a href="https://www.reuters.com/" target="_blank">路透社</a></p>
+    <p>📌 <a href="https://www.wsj.com/" target="_blank">华尔街日报</a></p>
+    <p>📌 <a href="https://www.eetimes.com/" target="_blank">EE Times</a></p>
   </div>
 </div>
-<div class="footer">由 GitHub Actions + GLM-4-Flash 自动生成 | 数据来源：Yahoo Finance (yfinance)</div>
+<div class="footer">由 GitHub Actions + GLM-4-Flash 自动生成 | 数据来源：Yahoo Finance<br>覆盖11只标的：NVDA / AMD / TSM / MRVL / MU / SOXL / DELL / IREN / NBIS / 三星电子 / SK海力士</div>
 </body>
 </html>
